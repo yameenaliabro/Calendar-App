@@ -62,6 +62,10 @@ margin: 17px;
     cursor: pointer;
     width: 50px;
   }  
+  .empty {
+    width: 50px;
+    padding: 5px;
+  }
   .date:hover {
     background-color: #f5f5f5;
   }
