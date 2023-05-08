@@ -1,5 +1,7 @@
 import { Calendar, Modal, Form, Input, Button, TimePicker } from 'antd';
 import { useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 function EventCalendar() {
   const [events, setEvents] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -54,7 +56,10 @@ function EventCalendar() {
       >
         <Form onFinish={handleEventSubmit}>
           <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-            <Input />
+            <Input  placeholder='Enter title here'/>
+          </Form.Item>
+          <Form.Item name="description" label="Title" rules={[{ required: true }]}>
+            <Input  placeholder='Enter a description'/>
           </Form.Item>
           <Form.Item
             name="startTime"
@@ -77,16 +82,16 @@ function EventCalendar() {
           </Form.Item>
         </Form>
       </Modal>
-
-      <Calendar
-      
+      <Calendar 
         dateCellRender={(date) => (
-          
           <div>
             {events.map((event) => {
               if (event.date === date.format('YYYY-MM-DD')) {
                 return (
-                  <div
+                  <div style={{
+                    backgroundColor:"blue",
+                    color:"#fff"
+                  }}
                     key={event.title}
                     draggable
                     onDragStart={() => handleEventDragStart(event)}
