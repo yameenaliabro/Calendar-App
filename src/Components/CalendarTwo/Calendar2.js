@@ -50,7 +50,7 @@ function EventCalendar() {
     <div>
       <Modal
         title="Create Event"
-        visible={modalVisible}
+        open={modalVisible}
         onCancel={() => setModalVisible(false)}
         footer={null}
       >
@@ -58,7 +58,7 @@ function EventCalendar() {
           <Form.Item name="title" label="Title" rules={[{ required: true }]}>
             <Input  placeholder='Enter title here'/>
           </Form.Item>
-          <Form.Item name="description" label="Title" rules={[{ required: true }]}>
+          <Form.Item name="description" label="description" rules={[{ required: true }]}>
             <Input  placeholder='Enter a description'/>
           </Form.Item>
           <Form.Item
