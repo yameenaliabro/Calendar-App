@@ -1,13 +1,10 @@
 import { Calendar, Modal, Form, Input, Button, TimePicker } from 'antd';
 import { useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 function EventCalendar() {
   const [events, setEvents] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [draggedEvent, setDraggedEvent] = useState(null);
-  // Function to handle event submission
   const handleEventSubmit   = (values) => {
     const newEvent = {
       title: values.title,
@@ -19,12 +16,10 @@ function EventCalendar() {
     setModalVisible(false);
   };
 
-  // Function to handle event drag start
   const handleEventDragStart = (event) => {
     setDraggedEvent(event);
   };
 
-  // Function to handle event drag end
   const handleEventDragEnd = () => {
     setDraggedEvent(null);
   };
@@ -32,7 +27,6 @@ function EventCalendar() {
     const updatedEvents = events.filter((e) => e !== event);
     setEvents(updatedEvents);
   };
-  // Function to handle event drop
   const handleEventDrop = (date) => {
     const updatedEvents = events.map((event) => {
       if (event === draggedEvent) {
