@@ -2,6 +2,7 @@ import Fullcalendar from "@fullcalendar/react"
 import dayGrid from "@fullcalendar/daygrid"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import interactionplugin from "@fullcalendar/interaction"
+import multiMonthYear from "@fullcalendar/multimonth"
 import { Modal, Button, Form, Input } from 'antd';
 import React, { useState, useRef } from 'react';
 function Calendar() {
@@ -43,12 +44,12 @@ function Calendar() {
     return (
         <div>
             <Fullcalendar
-                plugins={[dayGrid, timeGridPlugin, interactionplugin]}
+                plugins={[dayGrid, timeGridPlugin, interactionplugin,multiMonthYear]}
                 initialView={"dayGridMonth"}
                 headerToolbar={{
                     start: "today prev,next",
                     center: "title",
-                    end: "dayGridMonth,timeGridWeek,timeGridDay",
+                    end: "dayGridMonth,timeGridWeek,timeGridDay,multiMonthYear",
                 }}
                 dateClick={handleDateClick}
                 events={events}
