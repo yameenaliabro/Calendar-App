@@ -1,14 +1,9 @@
-import './App.css';
-import Calendar2 from './Components/Calendar/Calendar2';
-import EventCalendar from './Components/CalendarTwo/Calendar2';
+import Calendar from './Components/FullyCalendar/FullyCalendar';
 function App() {
   return (
     <div className='main-container'>
-      <Calendar2/>
-    <hr/>
-    <EventCalendar/>
+  <Calendar/>
     </div>
   )
 }
-
 export default App;
