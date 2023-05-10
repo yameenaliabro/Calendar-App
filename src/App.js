@@ -1,4 +1,4 @@
-import Calendar from './Components/FullyCalendar/FullyCalendar';
+import Calendar from './Components/FullyCalendar/Calendar';
 function App() {
   return (
     <div className='main-container'>

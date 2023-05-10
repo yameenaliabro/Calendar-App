@@ -4,7 +4,6 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import interactionplugin from "@fullcalendar/interaction"
 import { Modal, Button, Form, Input } from 'antd';
 import React, { useState, useRef } from 'react';
-import "./full.css"
 function Calendar() {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
