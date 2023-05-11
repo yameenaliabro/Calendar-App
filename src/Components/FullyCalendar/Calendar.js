@@ -3,22 +3,22 @@ import dayGrid from "@fullcalendar/daygrid"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import interactionplugin from "@fullcalendar/interaction"
 import multiMonthYear from "@fullcalendar/multimonth"
+import listPlugun from "@fullcalendar/list"
 import { Modal, Button, Form, Input } from 'antd';
 import React, { useState, useRef } from 'react';
 function Calendar() {
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState("")
     const [events, setEvents] = useState([]);
     const handleDateClick = (info) => {
-        setSelectedDate(info.date);
+        setSelectedDate(info.dateStr);
         setModalVisible(true);
     };
 
     const handleModalCancel = () => {
         setModalVisible(false);
-        setSelectedDate(null);
+        setSelectedDate("");
     };
-
     const handleModalSubmit = (values) => {
         const newEvent = {
             title: values.title,
@@ -40,23 +40,23 @@ function Calendar() {
         const updatedEvents = events.map((e) => (e.id === oldEvent.id ? updatedEvent : e));
         setEvents(updatedEvents);
     };
-  
+
     return (
         <div>
             <Fullcalendar
-                plugins={[dayGrid, timeGridPlugin, interactionplugin,multiMonthYear]}
+                plugins={[dayGrid, timeGridPlugin, interactionplugin,multiMonthYear,listPlugun]}
                 initialView={"dayGridMonth"}
                 headerToolbar={{
                     start: "today prev,next",
                     center: "title",
-                    end: "dayGridMonth,timeGridWeek,timeGridDay,multiMonthYear",
+                    end: "dayGridMonth,timeGridWeek,timeGridDay,multiMonthYear,listWeek",
                 }}
                 dateClick={handleDateClick}
                 events={events}
-                editable={true} // Enable event dragging and resizing
+                editable={true} 
                 eventDrop={handleEventDrop}
-                slotDuration="00:30:00"
-                eventRender="name"
+                // eventRender="name"
+                dayMaxEventRows={true}
             />
             <Modal
                 title="Create Event"
@@ -72,7 +72,6 @@ function Calendar() {
                     >
                         <Input />
                     </Form.Item>
-                    <p>Selected Date: {selectedDate && selectedDate.toDateString()}</p>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Create
