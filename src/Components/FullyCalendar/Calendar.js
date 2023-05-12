@@ -4,8 +4,8 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import interactionplugin from "@fullcalendar/interaction"
 import multiMonthYear from "@fullcalendar/multimonth"
 import listPlugun from "@fullcalendar/list"
-import { Modal, Button, Form, Input } from 'antd';
-import React, { useState,  } from 'react';
+import { Modal, Button, Form, Input, TimePicker } from 'antd';
+import React, { useState, } from 'react';
 function Calendar() {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState("")
@@ -22,8 +22,9 @@ function Calendar() {
         const newEvent = {
             title: values.title,
             start: selectedDate,
-            end:values.endtime,
-            allDay : false
+            startTime: values.startime,
+            endtime: values.endtime,
+            allDay: false
         };
         setEvents([...events, newEvent]);
         handleModalCancel();
@@ -44,7 +45,7 @@ function Calendar() {
     return (
         <div>
             <Fullcalendar
-                plugins={[dayGrid, timeGridPlugin, interactionplugin,multiMonthYear,listPlugun]}
+                plugins={[dayGrid, timeGridPlugin, interactionplugin, multiMonthYear, listPlugun]}
                 initialView={"dayGridMonth"}
                 headerToolbar={{
                     start: "today prev,next",
@@ -53,7 +54,7 @@ function Calendar() {
                 }}
                 dateClick={handleDateClick}
                 events={events}
-                editable={true} 
+                editable={true}
                 eventDrop={handleEventDrop}
                 // eventRender="name"
                 dayMaxEventRows={true}
@@ -72,6 +73,14 @@ function Calendar() {
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item name="startTime" label="Start Time" rules={[{ required: true, message: 'Please select start time' }]}>
+                        <TimePicker format="HH:mm" />
+                    </Form.Item>
+
+                    <Form.Item name="endTime" label="End Time" rules={[{ required: true, message: 'Please select end time' }]}>
+                        <TimePicker format="HH:mm" />
+                    </Form.Item>
+
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Create
