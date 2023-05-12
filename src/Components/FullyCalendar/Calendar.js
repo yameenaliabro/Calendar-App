@@ -5,7 +5,7 @@ import interactionplugin from "@fullcalendar/interaction"
 import multiMonthYear from "@fullcalendar/multimonth"
 import listPlugun from "@fullcalendar/list"
 import { Modal, Button, Form, Input } from 'antd';
-import React, { useState, useRef } from 'react';
+import React, { useState,  } from 'react';
 function Calendar() {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState("")
@@ -14,7 +14,6 @@ function Calendar() {
         setSelectedDate(info.dateStr);
         setModalVisible(true);
     };
-
     const handleModalCancel = () => {
         setModalVisible(false);
         setSelectedDate("");
@@ -23,6 +22,8 @@ function Calendar() {
         const newEvent = {
             title: values.title,
             start: selectedDate,
+            end:values.endtime,
+            allDay : false
         };
         setEvents([...events, newEvent]);
         handleModalCancel();
@@ -40,7 +41,6 @@ function Calendar() {
         const updatedEvents = events.map((e) => (e.id === oldEvent.id ? updatedEvent : e));
         setEvents(updatedEvents);
     };
-
     return (
         <div>
             <Fullcalendar
