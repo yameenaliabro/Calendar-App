@@ -32,15 +32,16 @@ function Calendar() {
     const handleEventDrop = (info) => {
         const { event, oldEvent } = info;
         if (!event || !event.start || !event.end) return;
-
         const updatedEvent = {
-            ...event,
-            start: event.start instanceof Date ? event.start.toISOString() : event.start,
-            end: event.end instanceof Date ? event.end.toISOString() : event.end,
-        };
-
+          id: event.id,
+          title: event.title,
+          allDay: event.allDay,
+          start: event.start instanceof Date ? event.start.toISOString() : event.start,
+          end: event.end instanceof Date ? event.end.toISOString() : event.end,
+        }
         const updatedEvents = events.map((e) => (e.id === oldEvent.id ? updatedEvent : e));
         setEvents(updatedEvents);
+        console.log({updatedEvents})
     };
     return (
         <div>
@@ -76,11 +77,9 @@ function Calendar() {
                     <Form.Item name="startTime" label="Start Time" rules={[{ required: true, message: 'Please select start time' }]}>
                         <TimePicker format="HH:mm" />
                     </Form.Item>
-
                     <Form.Item name="endTime" label="End Time" rules={[{ required: true, message: 'Please select end time' }]}>
                         <TimePicker format="HH:mm" />
                     </Form.Item>
-
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Create
